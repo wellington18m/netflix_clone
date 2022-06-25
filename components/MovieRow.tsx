@@ -16,14 +16,13 @@ function MovieRow({ title, movies }: Props) {
     if (rowRef.current) {
       const { scrollLeft, clientWidth } = rowRef.current;
 
-      console.log(rowRef.current.clientWidth);
       const scrollTo =
         direction === "left"
           ? scrollLeft - clientWidth
           : scrollLeft + clientWidth;
 
       setScrolllWidth(scrollTo);
-      rowRef.current?.scrollTo({ left: scrollTo, behavior: "smooth" });
+      rowRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
     }
   };
   return (

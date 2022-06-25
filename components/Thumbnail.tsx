@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { base_url } from "../constants/movies";
 import { Movie } from "../typings";
 
 interface Props {
