@@ -9,7 +9,7 @@ interface Props {
 }
 
 function MovieRow({ title, movies }: Props) {
-  const rowRef = useRef<HTMLElement>(null);
+  const rowRef = useRef<HTMLDivElement>(null);
   const [scrollWidth, setScrolllWidth] = useState<any>(0);
 
   const handleClick = (direction: string) => {
