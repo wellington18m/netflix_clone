@@ -44,8 +44,9 @@ function MovieRow({ title, movies }: Props) {
           ref={rowRef}
           className="flex space-x-0.5 items-center overflow-x-scroll scrollbar-none md:space-x-2.5 md:p-2"
         >
-          {movies &&
-            movies.map((movie) => <Thumbnail key={movie.id} movie={movie} />)}
+          {movies.map((movie) => (
+            <Thumbnail key={movie.id} movie={movie} />
+          ))}
         </div>
         <ChevronRightIcon
           className={`w-9 absolute top-0 bottom-0 z-40 right-2 m-auto cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100`}
