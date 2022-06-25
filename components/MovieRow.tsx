@@ -9,19 +9,22 @@ interface Props {
 }
 
 function MovieRow({ title, movies }: Props) {
-  const rowRef = useRef<HTMLDivElement>(null);
+  const rowRef = useRef<HTMLElement>(null);
   const [scrollWidth, setScrolllWidth] = useState<any>(0);
 
   const handleClick = (direction: string) => {
-    const { scrollLeft, clientWidth } = rowRef.current;
+    if (rowRef.current) {
+      const { scrollLeft, clientWidth } = rowRef.current;
 
-    const scrollTo =
-      direction === "left"
-        ? scrollLeft - clientWidth
-        : scrollLeft + clientWidth;
+      console.log(rowRef.current.clientWidth);
+      const scrollTo =
+        direction === "left"
+          ? scrollLeft - clientWidth
+          : scrollLeft + clientWidth;
 
-    setScrolllWidth(scrollTo);
-    rowRef.current?.scrollTo({ left: scrollTo, behavior: "smooth" });
+      setScrolllWidth(scrollTo);
+      rowRef.current?.scrollTo({ left: scrollTo, behavior: "smooth" });
+    }
   };
   return (
     <div className="h-40 space-y-1 mb-8">
