@@ -44,7 +44,7 @@ function MovieRow({ title, movies }: Props) {
           ref={rowRef}
           className="flex space-x-0.5 items-center overflow-x-scroll scrollbar-none md:space-x-2.5 md:p-2"
         >
-          {movies.map((movie) => (
+          {movies?.map((movie) => (
             <Thumbnail key={movie.id} movie={movie} />
           ))}
         </div>
