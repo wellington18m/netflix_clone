@@ -13,11 +13,9 @@ function Banner({ nextflixOriginals }: Props) {
   const [movie, setMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
-    if (nextflixOriginals) {
-      let currentMovie =
-        nextflixOriginals[Math.floor(Math.random() * nextflixOriginals.length)];
-      setMovie(currentMovie);
-    }
+    let currentMovie =
+      nextflixOriginals[Math.floor(Math.random() * nextflixOriginals?.length)];
+    setMovie(currentMovie);
   }, [nextflixOriginals]);
 
   return (
