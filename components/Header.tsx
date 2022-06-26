@@ -1,10 +1,12 @@
 import { BellIcon, SearchIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 function Header() {
   const [isScrolling, setScrollling] = useState(false);
-
+  const { logOut, user } = useAuth();
+  console.log(user);
   useEffect(() => {
     const handleScroll = () => {
       setScrollling(window.scrollY > 0);
@@ -36,6 +38,7 @@ function Header() {
       </div>
 
       <div className="flex items-center space-x-4 text-sm font-light">
+        <button onClick={logOut}>Log out</button>
         <SearchIcon className="hidden sm:flex w-6" />
         <p className="hidden lg:flex">Kids</p>
         <BellIcon className="w-6" />

@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
+import Loading from "../components/Loading";
 import MovieRow from "../components/MovieRow";
+import { useAuth } from "../hooks/useAuth";
 import { Movie } from "../typings";
 import requests from "../utils/requests";
 
@@ -27,11 +29,14 @@ const Home = ({
   romanceMovies,
   documentaries,
 }: Props) => {
+  const { loading } = useAuth();
+  if (loading) return <Loading />;
+
   return (
     <div className="relative h-screen bg-gradient-to-b lg:h-[140vh]">
       <Head>
         <title>Home - Nextflix Clone</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="https://rb.gy/ulxxee" />
       </Head>
 
       {/* Header */}
