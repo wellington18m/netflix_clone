@@ -3,21 +3,23 @@ import { useEffect, useState } from "react";
 import { base_url } from "../constants/movies";
 import { Movie } from "../typings";
 import { FaPlay } from "react-icons/fa";
-import { InformationCircleIcon } from "@heroicons/react/solid";
+import { InformationCircleIcon, PlusIcon } from "@heroicons/react/solid";
+import { useRecoilState } from "recoil";
+import { modalState, movieState } from "../atoms/modalAtom";
 
 interface Props {
   nextflixOriginals: Movie[];
 }
 
 function Banner({ nextflixOriginals }: Props) {
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const [movie, setMovie] = useRecoilState(movieState);
+  const [showModal, setShowModal] = useRecoilState(modalState);
 
   useEffect(() => {
     let currentMovie =
       nextflixOriginals[Math.floor(Math.random() * nextflixOriginals?.length)];
     setMovie(currentMovie);
   }, [nextflixOriginals]);
-
   return (
     <div className="flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:justify-end">
       <div className="absolute top-0 -z-10 left-0 h-[95vh] w-screen">
@@ -34,7 +36,12 @@ function Banner({ nextflixOriginals }: Props) {
         {movie?.overview}
       </p>
       <div className="flex space-x-3">
-        <button className="banner_button bg-white text-black">
+        <button
+          onClick={() => {
+            setShowModal(true);
+          }}
+          className="banner_button bg-white text-black"
+        >
           <FaPlay className="w-4 text-black md:w-7" /> Play
         </button>
         <button className="banner_button bg-[gray]/70">

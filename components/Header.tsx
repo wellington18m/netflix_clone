@@ -6,7 +6,7 @@ import { useAuth } from "../hooks/useAuth";
 function Header() {
   const [isScrolling, setScrollling] = useState(false);
   const { logOut, user } = useAuth();
-  console.log(user);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollling(window.scrollY > 0);
@@ -19,6 +19,9 @@ function Header() {
     };
   }, []);
 
+  function goToMyPlayList() {
+    document.body.scrollTo({ top: 200, behavior: "smooth" });
+  }
   return (
     <header className={`${isScrolling && "bg-[#141414]"}`}>
       <div className="flex items-center space-x-2 md:space-x-10">
@@ -33,7 +36,9 @@ function Header() {
           <li className="customLink">TV Shoes</li>
           <li className="customLink">Movies</li>
           <li className="customLink">New & Popular</li>
-          <li className="customLink">My List</li>
+          <li onClick={goToMyPlayList} className="customLink">
+            My List
+          </li>
         </ul>
       </div>
 

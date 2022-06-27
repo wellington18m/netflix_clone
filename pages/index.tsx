@@ -6,6 +6,9 @@ import MovieRow from "../components/MovieRow";
 import { useAuth } from "../hooks/useAuth";
 import { Movie } from "../typings";
 import requests from "../utils/requests";
+import { useRecoilValue } from "recoil";
+import { modalState, myListState } from "../atoms/modalAtom";
+import Modal from "../components/Modal";
 
 interface Props {
   nextflixOriginals: Movie[];
@@ -31,9 +34,13 @@ const Home = ({
 }: Props) => {
   const { loading } = useAuth();
   if (loading) return <Loading />;
-
+  const showModal = useRecoilValue(modalState);
+  const myList = useRecoilValue(myListState);
   return (
-    <div className="relative h-screen bg-gradient-to-b lg:h-[140vh]">
+    <div
+      id="scroll"
+      className="relative h-screen bg-gradient-to-b lg:h-[140vh]"
+    >
       <Head>
         <title>Home - Nextflix Clone</title>
         <link rel="icon" href="https://rb.gy/ulxxee" />
@@ -49,13 +56,18 @@ const Home = ({
           <MovieRow title="Top Rated" movies={topRated} />
           <MovieRow title="Action Thrillers" movies={actionMovies} />
           {/* My list */}
-
+          {myList.length > 0 && (
+            <div id="mylist">
+              <MovieRow title="My list" movies={myList} />
+            </div>
+          )}
           <MovieRow title="Comedies" movies={comedyMovies} />
           <MovieRow title="Scary Movies" movies={horrorMovies} />
           <MovieRow title="Romance Movies" movies={romanceMovies} />
           <MovieRow title="Documentaries" movies={documentaries} />
         </section>
       </main>
+      {showModal && <Modal />}
     </div>
   );
 };
